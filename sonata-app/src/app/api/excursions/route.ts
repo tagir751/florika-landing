@@ -1,21 +1,27 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { createErrorResponse, createJsonResponse, validateRequiredFields } from '@/utils/api'
 
 export async function GET() {
   try {
     const excursions = await prisma.excursion.findMany({
       orderBy: { name: 'asc' },
     })
-    return NextResponse.json(excursions)
+    return createJsonResponse(excursions)
   } catch (error) {
-    console.error('Error fetching excursions:', error)
-    return NextResponse.json({ error: 'Failed to fetch excursions' }, { status: 500 })
+    return createErrorResponse('Failed to fetch excursions')
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
+    
+    const validationError = validateRequiredFields(body, ['name', 'price'])
+    if (validationError) {
+      return createErrorResponse(validationError, 400)
+    }
+
     const { name, description, price, duration } = body
 
     const excursion = await prisma.excursion.create({
@@ -27,9 +33,8 @@ export async function POST(request: Request) {
       },
     })
 
-    return NextResponse.json(excursion)
+    return createJsonResponse(excursion)
   } catch (error) {
-    console.error('Error creating excursion:', error)
-    return NextResponse.json({ error: 'Failed to create excursion' }, { status: 500 })
+    return createErrorResponse('Failed to create excursion')
   }
 }

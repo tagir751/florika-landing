@@ -3,6 +3,7 @@
 import { useSession, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getRoleDisplayName } from '@/utils/auth'
 
 export default function Header() {
   const { data: session } = useSession()
@@ -27,7 +28,7 @@ export default function Header() {
                   <Link href="/admin/users" className="hover:text-accent transition">Управление сотрудниками</Link>
                 )}
                 <span className="text-sm">
-                  {session.user?.name} ({session.user?.role === 'SELLER' ? 'Продавец' : session.user?.role === 'MANAGER' ? 'Менеджер' : 'Собственник'})
+                  {session.user?.name} ({getRoleDisplayName(session.user?.role)})
                 </span>
                 <button
                   onClick={() => signOut({ callbackUrl: '/login' })}

@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { createErrorResponse, createJsonResponse } from '@/utils/api'
 
 export async function GET() {
   try {
     const agents = await prisma.agent.findMany({
       orderBy: { name: 'asc' },
     })
-    return NextResponse.json(agents)
+    return createJsonResponse(agents)
   } catch (error) {
-    console.error('Error fetching agents:', error)
-    return NextResponse.json({ error: 'Failed to fetch agents' }, { status: 500 })
+    return createErrorResponse('Failed to fetch agents')
   }
 }
