@@ -1,0 +1,11 @@
+# PassengerNodejs /home/YOUR_LOGIN/.local/bin/node
+# PassengerAppRoot /home/YOUR_LOGIN/YOUR_DOMAIN/public_html
+# PassengerAppType node
+# PassengerStartupFile start.js
+SetEnv NODE_ENV production
+SetEnv PORT 3000
+SetEnv HOSTNAME 127.0.0.1
+SetEnv DATABASE_URL file:/home/YOUR_LOGIN/YOUR_DOMAIN/public_html/data/app.db?_journal_mode=WAL
+
+# Опционально: логирование
+# PassengerLogDir /home/YOUR_LOGIN/YOUR_DOMAIN/logs
