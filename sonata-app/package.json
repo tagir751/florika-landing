@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "npx next dev --turbo",
+    "build": "TOKIO_WORKER_THREADS=1 TASK_CONCURRENCY=1 NODE_OPTIONS='--max-old-space-size=400' npx next build",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
-    "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "db:seed": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seed.ts",
+    "prisma:gen": "npx prisma generate",
+    "copy-static": "rm -rf _next && mkdir -p _next && cp -r .next/static _next/ && cp -r .next/standalone/.next _next/",
+    "deploy:build": "npm run build && npm run copy-static",
+    "restart": "touch tmp/restart.txt",
+    "logs": "tail -f debug.log",
+    "check": "ls -la .next/standalone/server.js && ls -la _next/static/"
   },
   "dependencies": {
     "next": "14.2.5",
