@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { createErrorResponse, createJsonResponse } from '@/utils/api'
 
 export async function GET() {
   try {
     const drivers = await prisma.driver.findMany({
       orderBy: { name: 'asc' },
     })
-    return NextResponse.json(drivers)
+    return createJsonResponse(drivers)
   } catch (error) {
-    console.error('Error fetching drivers:', error)
-    return NextResponse.json({ error: 'Failed to fetch drivers' }, { status: 500 })
+    return createErrorResponse('Failed to fetch drivers')
   }
 }

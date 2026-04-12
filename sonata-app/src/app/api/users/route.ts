@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { requireAuth } from '@/utils/auth'
+import { createErrorResponse, createJsonResponse } from '@/utils/api'
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
-    
-    if (!session || (session.user?.role !== 'OWNER')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+    const auth = await requireAuth(['OWNER'])
+    if (!auth.authorized) {
+      return auth.response!
     }
 
     const users = await prisma.user.findMany({
@@ -21,19 +20,17 @@ export async function GET() {
       },
       orderBy: { createdAt: 'desc' },
     })
-    return NextResponse.json(users)
+    return createJsonResponse(users)
   } catch (error) {
-    console.error('Error fetching users:', error)
-    return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 })
+    return createErrorResponse('Failed to fetch users')
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
-    
-    if (!session || (session.user?.role !== 'OWNER')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+    const auth = await requireAuth(['OWNER'])
+    if (!auth.authorized) {
+      return auth.response!
     }
 
     const body = await request.json()
@@ -44,7 +41,7 @@ export async function POST(request: Request) {
     })
 
     if (existingUser) {
-      return NextResponse.json({ error: 'User already exists' }, { status: 400 })
+      return createErrorResponse('User already exists', 400)
     }
 
     const user = await prisma.user.create({
@@ -62,35 +59,32 @@ export async function POST(request: Request) {
       },
     })
 
-    return NextResponse.json(user)
+    return createJsonResponse(user)
   } catch (error) {
-    console.error('Error creating user:', error)
-    return NextResponse.json({ error: 'Failed to create user' }, { status: 500 })
+    return createErrorResponse('Failed to create user')
   }
 }
 
 export async function DELETE(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
-    
-    if (!session || (session.user?.role !== 'OWNER')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+    const auth = await requireAuth(['OWNER'])
+    if (!auth.authorized) {
+      return auth.response!
     }
 
     const { searchParams } = new URL(request.url)
     const userId = searchParams.get('id')
 
     if (!userId) {
-      return NextResponse.json({ error: 'User ID required' }, { status: 400 })
+      return createErrorResponse('User ID required', 400)
     }
 
     await prisma.user.delete({
       where: { id: userId },
     })
 
-    return NextResponse.json({ success: true })
+    return createJsonResponse({ success: true })
   } catch (error) {
-    console.error('Error deleting user:', error)
-    return NextResponse.json({ error: 'Failed to delete user' }, { status: 500 })
+    return createErrorResponse('Failed to delete user')
   }
 }
