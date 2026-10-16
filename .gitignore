@@ -1,40 +1,15 @@
-```
 # Dependencies
 node_modules/
-
-# Database
-prisma/data/
-
-# Environment
-.env
-.env.local
-.env.*
-
-# Logs
-*.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-
 # Build outputs
 dist/
 build/
-target/
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-
-# Temporary files
+# OS
+.DS_Store
+Thumbs.db
+# IDE
+.vscode/
+.idea/
+# Logs
+*.log
+# Temp
 *.tmp
-*.temp
-*~
-```

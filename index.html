@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bineos — резервное питание для дома</title>
+  <meta name="description" content="Отключили свет? Важные приборы продолжат работать. Резервное питание для загородного дома: котёл, холодильник, освещение и интернет. Система 5 кВт с аккумулятором 5,12 кВт·ч — 265 400 ₽." />
+  <meta name="keywords" content="Bineos, инвертор, резервное питание, ИБП для дома, гибридный инвертор, LiFePO4, автономное электроснабжение" />
+  <meta property="og:title" content="Bineos — резервное питание для дома" />
+  <meta property="og:description" content="Отключили свет? Важные приборы продолжат работать. Система 5 кВт — 265 400 ₽ под ключ." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta name="theme-color" content="#0B2545" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0B2545',
+            'navy-dark': '#06152B',
+            orange: '#FF6B00',
+            'orange-dark': '#E05E00',
+            green: '#22A06B',
+            graphite: '#1A2B3C',
+            muted: '#5A6B7C',
+            light: '#F5F7FA'
+          },
+          fontFamily: {
+            heading: ['Manrope', 'Golos Text', 'sans-serif'],
+            body: ['Inter', 'Golos Text', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', 'Golos Text', sans-serif; color: #1A2B3C; }
+    h1, h2, h3, h4 { font-family: 'Manrope', 'Golos Text', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .hero-bg {
+      background: linear-gradient(135deg, #0B2545 0%, #13315C 60%, #1A3F73 100%);
+    }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(11,37,69,.12); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    #how .grid > div:nth-child(1) { transition-delay: .1s; }
+    #how .grid > div:nth-child(2) { transition-delay: .25s; }
+    #how .grid > div:nth-child(3) { transition-delay: .4s; }
+    button:active { transform: scale(.97); }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    html.dark body { background: #0F172A; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #1E293B !important; }
+    html.dark .bg-light { background-color: #111827 !important; }
+    html.dark .text-navy { color: #F1F5F9 !important; }
+    html.dark .text-graphite { color: #CBD5E1 !important; }
+    html.dark .text-muted { color: #94A3B8 !important; }
+    html.dark .border-gray-100, html.dark .border-gray-200, html.dark .border-gray-300 { border-color: #334155 !important; }
+    html.dark .sticky-cta { background: #1E293B; border-top-color: #334155; }
+    html.dark header { background: rgba(15,23,42,.9); border-bottom-color: #334155; }
+    @media (min-width: 768px) { .sticky-cta { display: none; } }
+  </style>
+</head>
+<body class="bg-white antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="w-9 h-9 rounded-lg bg-navy text-white flex items-center justify-center font-bold">B</span>
+        <span class="font-heading font-bold text-navy text-lg">Bineos</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-graphite">
+        <a href="#scenarios" class="hover:text-orange">Сценарии</a>
+        <a href="#calc" class="hover:text-orange">Калькулятор</a>
+        <a href="#configs" class="hover:text-orange">Конфигурации</a>
+        <a href="#catalog" class="hover:text-orange">Каталог</a>
+        <a href="#docs" class="hover:text-orange">Документы</a>
+        <a href="#trust" class="hover:text-orange">Доверие</a>
+      </nav>
+      <button id="theme-toggle" class="p-2 rounded-lg border border-gray-200 hover:border-orange transition text-graphite" aria-label="Переключить тему">🌙</button>
+      <a href="#form" class="hidden md:inline-flex bg-orange hover:bg-orange-dark text-white font-semibold px-4 py-2 rounded-lg text-sm transition">Рассчитать систему</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero-bg text-white">
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 text-xs mb-5">
+          <span class="w-2 h-2 rounded-full bg-green"></span>
+          Система АТОМ — мониторинг 24/7
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-5">
+          Отключили свет? <span class="text-orange">Важные приборы продолжат работать.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/80 mb-7">
+          Резервное питание для загородного дома: котёл, холодильник, освещение и интернет. Система 5 кВт с аккумулятором 5,12 кВт·ч — 265 400 ₽. Монтаж от 4 часов до 2 дней.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-8">
+          <a href="#form" class="bg-orange hover:bg-orange-dark text-white font-bold px-6 py-3 rounded-xl text-center transition">Рассчитать мою систему бесплатно</a>
+          <a href="#how" class="border border-white/30 hover:bg-white/10 text-white font-semibold px-6 py-3 rounded-xl text-center transition">Как это работает</a>
+        </div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
+          <span>✓ 17 лет на рынке</span>
+          <span>✓ 3 400+ монтажей</span>
+          <span>✓ Гарантия 2 года</span>
+          <span>✓ Декларация ЕАЭС</span>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+          <img src="assets/images/hero-inverter.png" alt="Инвертор Bineos в щите" class="w-full rounded-xl object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hidden items-center justify-center h-64 text-white/40 text-sm">Фото монтажа щита</div>
+          <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+            <div class="bg-white/5 rounded-lg p-3">
+              <div class="mono text-orange font-bold text-lg">5 кВт</div>
+              <div class="text-xs text-white/60">мощность</div>
+            </div>
+            <div class="bg-white/5 rounded-lg p-3">
+              <div class="mono text-orange font-bold text-lg">5,12</div>
+              <div class="text-xs text-white/60">кВт·ч АКБ</div>
+            </div>
+            <div class="bg-white/5 rounded-lg p-3">
+              <div class="mono text-orange font-bold text-lg">10–20</div>
+              <div class="text-xs text-white/60">мс переключение</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Как работает -->
+  <section id="how" class="py-16 bg-light">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Как это работает</h2>
+      <p class="text-muted text-center mb-10 max-w-2xl mx-auto">Три шага — и ваш дом не замечает отключений.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 text-center card-hover">
+          <div class="w-14 h-14 rounded-full bg-navy text-white flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+          <h3 class="font-heading font-bold text-navy mb-2">Свет пропал</h3>
+          <p class="text-sm text-muted">Сеть отключилась — система мгновенно это видит.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 text-center card-hover">
+          <div class="w-14 h-14 rounded-full bg-orange text-white flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+          <h3 class="font-heading font-bold text-navy mb-2">Подхват за 10–20 мс</h3>
+          <p class="text-sm text-muted">Инвертор переключает нагрузку на АКБ. Котёл и роутер не перезагружаются.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 text-center card-hover">
+          <div class="w-14 h-14 rounded-full bg-green text-white flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+          <h3 class="font-heading font-bold text-navy mb-2">Заряд при появлении сети</h3>
+          <p class="text-sm text-muted">Когда свет вернулся — система заряжает батарею и снова готова к отключению.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Сценарии -->
+  <section id="scenarios" class="py-16 bg-light">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Для каких задач</h2>
+      <p class="text-muted text-center mb-10 max-w-2xl mx-auto">Человеческие единицы: не кВт·ч, а часы работы ваших приборов.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-white rounded-2xl p-5 card-hover">
+          <div class="text-3xl mb-3">🔥</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Котёл зимой</h3>
+          <p class="text-sm text-muted mb-2">Котёл + насос + свет = 8 ч без света. Трубы не разморозятся.</p>
+          <div class="mono text-xs text-green">от 246 750 ₽</div>
+        </div>
+        <div class="bg-white rounded-2xl p-5 card-hover">
+          <div class="text-3xl mb-3">🏠</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Весь дом</h3>
+          <p class="text-sm text-muted mb-2">Дом 120 м²: свет, холодильник, интернет, телевизор = 6–8 ч.</p>
+          <div class="mono text-xs text-green">от 265 400 ₽</div>
+        </div>
+        <div class="bg-white rounded-2xl p-5 card-hover">
+          <div class="text-3xl mb-3">🏪</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Магазин / серверная</h3>
+          <p class="text-sm text-muted mb-2">Кассы, холодильники, сервер = 0 минут простоя.</p>
+          <div class="mono text-xs text-green">от 398 700 ₽</div>
+        </div>
+        <div class="bg-white rounded-2xl p-5 card-hover">
+          <div class="text-3xl mb-3">🔬</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Лаборатория</h3>
+          <p class="text-sm text-muted mb-2">Анализаторы не теряют калибровку, гарантия сохраняется.</p>
+          <div class="mono text-xs text-green">от 511 800 ₽</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Что входит -->
+  <section id="kit" class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Что входит в комплект</h2>
+      <p class="text-muted text-center mb-10 max-w-2xl mx-auto">Основная конфигурация «Контроль 5 кВт / 5 кВт·ч» — 265 400 ₽ под ключ.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="text-2xl mb-2">⚡</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Инвертор 5 кВт</h3>
+          <p class="text-sm text-muted">Чистый синус, безопасно для любой техники.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="text-2xl mb-2">🔋</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Накопитель LiFePO4 5,12 кВт·ч</h3>
+          <p class="text-sm text-muted">Срок службы до 12 лет при соблюдении режимов.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="text-2xl mb-2">🔌</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Байпасный щит</h3>
+          <p class="text-sm text-muted">Ручной обход при обслуживании.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="text-2xl mb-2">🧰</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Монтажный комплект и провода</h3>
+          <p class="text-sm text-muted">Всё для подключения в комплекте.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="text-2xl mb-2">🛡️</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Гарантия 2 года</h3>
+          <p class="text-sm text-muted">Выезд сервис-инженера ≤ 48 ч.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="text-2xl mb-2">📡</div>
+          <h3 class="font-heading font-bold text-navy mb-1">Мониторинг АТОМ</h3>
+          <p class="text-sm text-muted">Бесплатный удалённый контроль 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подходит ли вам -->
+  <section id="fit" class="py-16 bg-light">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Подходит ли вам эта система?</h2>
+      <p class="text-muted text-center mb-8">Три вопроса — и вы поймёте, нужна ли вам консультация.</p>
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
+        <div id="quiz" class="space-y-6">
+          <div class="q-block" data-q="home">
+            <p class="font-semibold text-navy mb-3">1. У вас загородный дом или дача?</p>
+            <div class="flex gap-3">
+              <button class="q-btn px-5 py-2 rounded-lg border border-gray-300 hover:border-orange hover:text-orange transition" data-val="yes">Да</button>
+              <button class="q-btn px-5 py-2 rounded-lg border border-gray-300 hover:border-orange hover:text-orange transition" data-val="no">Нет</button>
+            </div>
+          </div>
+          <div class="q-block" data-q="outages">
+            <p class="font-semibold text-navy mb-3">2. Бывают отключения света дольше 2 часов?</p>
+            <div class="flex gap-3">
+              <button class="q-btn px-5 py-2 rounded-lg border border-gray-300 hover:border-orange hover:text-orange transition" data-val="yes">Да</button>
+              <button class="q-btn px-5 py-2 rounded-lg border border-gray-300 hover:border-orange hover:text-orange transition" data-val="no">Нет</button>
+            </div>
+          </div>
+          <div class="q-block" data-q="critical">
+            <p class="font-semibold text-navy mb-3">3. Есть газовый котёл или скважинный насос?</p>
+            <div class="flex gap-3">
+              <button class="q-btn px-5 py-2 rounded-lg border border-gray-300 hover:border-orange hover:text-orange transition" data-val="yes">Да</button>
+              <button class="q-btn px-5 py-2 rounded-lg border border-gray-300 hover:border-orange hover:text-orange transition" data-val="no">Нет</button>
+            </div>
+          </div>
+        </div>
+        <div id="quiz-result" class="hidden mt-6 p-4 rounded-xl"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Калькулятор -->
+  <section id="calc" class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Калькулятор автономности</h2>
+      <p class="text-muted text-center mb-8">Сколько часов проработает ваш дом при отключении.</p>
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-graphite mb-1">Мощность нагрузки, Вт</label>
+          <input id="calc-load" type="number" value="600" min="100" step="50" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-graphite focus:outline-none focus:border-orange" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-graphite mb-1">Ёмкость АКБ, кВт·ч</label>
+          <select id="calc-bat" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-graphite focus:outline-none focus:border-orange">
+            <option value="5.12">5,12 (один модуль)</option>
+            <option value="10.24">10,24 (два модуля)</option>
+            <option value="15.36">15,36 (три модуля)</option>
+          </select>
+        </div>
+        <button onclick="runCalc()" class="w-full bg-navy hover:bg-navy-dark text-white font-bold py-3 rounded-xl transition">Рассчитать</button>
+        <div id="calc-result" class="hidden p-4 rounded-xl bg-green/10 border border-green text-green font-semibold"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Конфигурации -->
+  <section id="configs" class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Конфигурации</h2>
+      <p class="text-muted text-center mb-10 max-w-2xl mx-auto">Выберите по нагрузке и нужному времени автономии.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="mono text-xs text-muted mb-1">3 кВт / 5 кВт·ч</div>
+          <div class="text-2xl font-bold text-navy mb-1">246 750 ₽</div>
+          <div class="text-sm text-green font-semibold mb-3">6–10 ч автономии</div>
+          <p class="text-sm text-muted mb-4">Дачи и маленькие дома — главное котёл зимой.</p>
+          <a href="#form" class="block text-center text-sm font-semibold text-orange hover:underline">Запросить расчёт →</a>
+        </div>
+        <div class="border-2 border-orange rounded-2xl p-5 card-hover relative">
+          <span class="absolute -top-3 left-4 bg-orange text-white text-xs font-bold px-2 py-1 rounded">Хит</span>
+          <div class="mono text-xs text-muted mb-1">5 кВт / 5 кВт·ч</div>
+          <div class="text-2xl font-bold text-navy mb-1">265 400 ₽</div>
+          <div class="text-sm text-green font-semibold mb-3">6–8 ч автономии</div>
+          <p class="text-sm text-muted mb-4">Стандартный загородный дом — основная конфигурация.</p>
+          <a href="#form" class="block text-center text-sm font-semibold text-orange hover:underline">Запросить расчёт →</a>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="mono text-xs text-muted mb-1">5 кВт / 10 кВт·ч</div>
+          <div class="text-2xl font-bold text-navy mb-1">398 700 ₽</div>
+          <div class="text-sm text-green font-semibold mb-3">12–16 ч автономии</div>
+          <p class="text-sm text-muted mb-4">Полный день без света.</p>
+          <a href="#form" class="block text-center text-sm font-semibold text-orange hover:underline">Запросить расчёт →</a>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-5 card-hover">
+          <div class="mono text-xs text-muted mb-1">10 кВт / 10 кВт·ч</div>
+          <div class="text-2xl font-bold text-navy mb-1">511 800 ₽</div>
+          <div class="text-sm text-green font-semibold mb-3">5–8 ч автономии</div>
+          <p class="text-sm text-muted mb-4">Дом с электрокотлом и скважинным насосом.</p>
+          <a href="#form" class="block text-center text-sm font-semibold text-orange hover:underline">Запросить расчёт →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Каталог моделей -->
+  <section id="catalog" class="py-16 bg-light">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Каталог моделей</h2>
+      <p class="text-muted text-center mb-8 max-w-2xl mx-auto">Полная линейка инверторов Bineos.</p>
+      <div class="overflow-x-auto bg-white rounded-2xl shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-navy text-white">
+            <tr>
+              <th class="px-4 py-3 text-left">Модель</th>
+              <th class="px-4 py-3 text-left">Серия</th>
+              <th class="px-4 py-3 text-left">Мощность</th>
+              <th class="px-4 py-3 text-left">Напряжение АКБ</th>
+              <th class="px-4 py-3 text-left">Цена, ₽</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="px-4 py-3 font-medium">BINEOS T 700</td><td>T</td><td>700 ВА / 500 Вт</td><td>12 В</td><td class="mono">15 412</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS T 1200</td><td>T</td><td>1200 ВА / 840 Вт</td><td>12 В</td><td class="mono">17 237</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS 3KF</td><td>Базовая</td><td>3000 ВА / 2400 Вт</td><td>24 В</td><td class="mono">30 095</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS 5KF</td><td>Базовая</td><td>5000 ВА / 4000 Вт</td><td>48 В</td><td class="mono">56 605</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS EM3KF</td><td>EM (MPPT)</td><td>3000 ВА, MPPT 1000 Вт</td><td>24 В</td><td class="mono">39 805</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS EM5KF</td><td>EM (MPPT)</td><td>5000 ВА, MPPT 3000 Вт</td><td>48 В</td><td class="mono">75 544</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS EM3PF</td><td>EM (MPPT)</td><td>MPPT 1500 Вт</td><td>24 В</td><td class="mono">—</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS HV 4K</td><td>Super H/HV</td><td>4000 Вт</td><td>48 В</td><td class="mono">91 896</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS Super H 4K</td><td>Super H/HV</td><td>4000 Вт (пик 10000 ВА)</td><td>48 В</td><td class="mono">128 910</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS R5K (R5000)</td><td>R (rack-mount)</td><td>5000 ВА / 5000 Вт</td><td>48 В</td><td class="mono">60 380</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS S 5K</td><td>S (новые)</td><td>5000 ВА</td><td>48 В</td><td class="mono">53 490</td></tr>
+            <tr><td class="px-4 py-3 font-medium">BINEOS SUN 5K-G</td><td>Сетевой</td><td>5000 Вт</td><td>—</td><td class="mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Документация -->
+  <section id="docs" class="py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Документация</h2>
+      <p class="text-muted text-center mb-8">Инструкции PDF по сериям, декларации, схемы подключения.</p>
+      <div class="space-y-3">
+        <a href="https://bineos.ru/uploads/BINEOS_%D1%81%D0%B5%D1%80%D0%B8%D0%B8_S_%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20v1_8_ed2_0.pdf" target="_blank" class="flex items-center justify-between bg-light rounded-xl p-4 hover:bg-gray-100 transition">
+          <span class="font-medium text-navy">Серия S (1K–5K) — полная инструкция</span>
+          <span class="text-xs text-muted mono">PDF · 34 стр.</span>
+        </a>
+        <a href="https://bineos.ru/uploads/BINEOS_Super_H_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_v1_1_ed_1_2.pdf" target="_blank" class="flex items-center justify-between bg-light rounded-xl p-4 hover:bg-gray-100 transition">
+          <span class="font-medium text-navy">Super H 4K — инструкция</span>
+          <span class="text-xs text-muted mono">PDF · 54 стр.</span>
+        </a>
+        <a href="https://tok-shop.ru/wa-data/public/shop/plugins/userparams/pdf/product/9502/bineos-r3000-r5000_instruktsiya_v_1_ed_1_1_p.pdf" target="_blank" class="flex items-center justify-between bg-light rounded-xl p-4 hover:bg-gray-100 transition">
+          <span class="font-medium text-navy">Серия R (3000–5000) — инструкция</span>
+          <span class="text-xs text-muted mono">PDF · 60 стр.</span>
+        </a>
+        <a href="https://www.unibelus.by/upload/files/2624c1fa-eda7-11ea-814f-00155d045202.pdf" target="_blank" class="flex items-center justify-between bg-light rounded-xl p-4 hover:bg-gray-100 transition">
+          <span class="font-medium text-navy">BINEOS T 1200-12 — краткая инструкция</span>
+          <span class="text-xs text-muted mono">PDF · 4 стр.</span>
+        </a>
+        <a href="https://www.unibelus.by/upload/files/23b1c7ca-ec15-11ea-814f-00155d045202.pdf" target="_blank" class="flex items-center justify-between bg-light rounded-xl p-4 hover:bg-gray-100 transition">
+          <span class="font-medium text-navy">BINEOS T 700-12 / T 1200-12 — краткая</span>
+          <span class="text-xs text-muted mono">PDF · 4 стр.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Кейс -->
+  <section id="case" class="py-16 bg-light">
+    <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <span class="text-xs font-bold text-orange uppercase tracking-wide">Реальный монтаж</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-navy mt-2 mb-4">Коттедж 240 м², Московская область</h2>
+        <ul class="space-y-2 text-graphite mb-4">
+          <li>• Конфигурация: 5 кВт / 10 кВт·ч</li>
+          <li>• Фактическая автономия: 14 часов (котёл + холодильник + свет + роутер)</li>
+          <li>• Монтаж: 6 часов, одна бригада</li>
+          <li>• Цена под ключ: 398 700 ₽</li>
+        </ul>
+        <p class="text-sm text-muted">Один настоящий объект с фото щита и составом системы. Больше кейсов — по запросу.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <img src="assets/images/case-panel.png" alt="Щит резервного питания" class="w-full rounded-xl object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="hidden items-center justify-center h-56 text-muted text-sm">Фото щита монтажа</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Доверие -->
+  <section id="trust" class="py-16 bg-light">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-3">Почему нам доверяют</h2>
+      <p class="text-muted text-center mb-10 max-w-2xl mx-auto">12 сигналов, что мы — корпорация, а не «дядя Вася».</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">ООО, ОГРН, ИНН в футере. Работаем по договору, цена фиксируется.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Сертификация ЕАЭС: декларации RU Д-CN.РА03.В.72899/23 и РА06.В.18410/25 со ссылками на реестр ФСА.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">17 лет на рынке, 3 400+ монтажей, сервисный центр в Химках.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Реальные фото команды и выставочного зала с подписями имён.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Видео-тур по выставочному залу (60–90 сек).</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Штатные бригады: монтируют наши сотрудники, не субподряд.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Документы открыто: образцы договора, акта, инструкции PDF, декларации.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Производитель: Shenzhen SMK, прямые поставки.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Гарантия 2 года, выезд сервис-инженера ≤ 48 ч.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Отзывы с верификацией: фото объекта, номер договора.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Партнёры/клиенты: логотипы лабораторий и сетей магазинов.</span></div>
+        <div class="bg-white rounded-xl p-4 border border-gray-200"><span class="text-green font-bold">✓</span> <span class="text-sm">Мониторинг АТОМ: скриншот личного кабинета — видим систему 24/7.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-8">Частые вопросы</h2>
+      <div class="space-y-3">
+        <details class="bg-light rounded-xl p-4">
+          <summary class="font-semibold text-navy cursor-pointer">Это безопасно?</summary>
+          <p class="text-sm text-muted mt-2">Чистая синусоида на выходе, защита от перегрузки, перегрева и КЗ. Декларация ЕАЭС.</p>
+        </details>
+        <details class="bg-light rounded-xl p-4">
+          <summary class="font-semibold text-navy cursor-pointer">Сколько прослужит?</summary>
+          <p class="text-sm text-muted mt-2">АКБ LiFePO4 — до 12 лет при соблюдении режимов заряда/разряда.</p>
+        </details>
+        <details class="bg-light rounded-xl p-4">
+          <summary class="font-semibold text-navy cursor-pointer">Что с гарантией?</summary>
+          <p class="text-sm text-muted mt-2">2 года на оборудование, выезд сервис-инженера ≤ 48 ч.</p>
+        </details>
+        <details class="bg-light rounded-xl p-4">
+          <summary class="font-semibold text-navy cursor-pointer">Шумит?</summary>
+          <p class="text-sm text-muted mt-2">Вентиляторы включаются только при нагрузке, в режиме ожидания — бесшумно.</p>
+        </details>
+        <details class="bg-light rounded-xl p-4">
+          <summary class="font-semibold text-navy cursor-pointer">Можно ли зимой?</summary>
+          <p class="text-sm text-muted mt-2">Да, монтаж в отапливаемом помещении, АКБ — внутри дома.</p>
+        </details>
+        <details class="bg-light rounded-xl p-4">
+          <summary class="font-semibold text-navy cursor-pointer">Кто обслуживает?</summary>
+          <p class="text-sm text-muted mt-2">Штатные бригады, не субподряд. Сервисный центр в Химках.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма -->
+  <section id="form" class="py-16 bg-navy text-white">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">Получить расчёт системы</h2>
+      <p class="text-white/70 mb-8">Оставьте имя и телефон — перезвоним за 15 минут.</p>
+      <form class="bg-white rounded-2xl p-6 text-left space-y-4" onsubmit="return handleSubmit(event)">
+        <div>
+          <label class="block text-sm font-medium text-graphite mb-1">Имя</label>
+          <input type="text" required placeholder="Как к вам обращаться" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-graphite focus:outline-none focus:border-orange" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-graphite mb-1">Телефон</label>
+          <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-graphite focus:outline-none focus:border-orange" />
+        </div>
+        <button type="submit" class="w-full bg-orange hover:bg-orange-dark text-white font-bold py-3 rounded-xl transition">Отправить заявку</button>
+        <p class="text-xs text-muted text-center">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных (152-ФЗ).</p>
+      </form>
+      <div id="form-success" class="hidden mt-4 bg-green/20 border border-green rounded-xl p-4 text-green font-semibold">
+        Спасибо! Мы перезвоним в течение 15 минут.
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="bg-navy-dark text-white/70 py-10">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <div class="font-heading font-bold text-white text-lg mb-2">Bineos</div>
+        <p>Торговая марка многофункциональных гибридных инверторов. Производство: Shenzhen SMK New Energy Technology (Китай). Платформа Axpert (Voltronic Power).</p>
+      </div>
+      <div>
+        <div class="font-semibold text-white mb-2">Документы</div>
+        <ul class="space-y-1">
+          <li><a href="https://bineos.ru/uploads/BINEOS_%D1%81%D0%B5%D1%80%D0%B8%D0%B8_S_%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20v1_8_ed2_0.pdf" class="hover:text-orange">Инструкция серия S</a></li>
+          <li><a href="https://bineos.ru/uploads/BINEOS_Super_H_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_v1_1_ed_1_2.pdf" class="hover:text-orange">Инструкция Super H 4K</a></li>
+          <li><a href="#" class="hover:text-orange">Декларация ЕАЭС RU Д-CN.РА03.В.72899/23</a></li>
+          <li><a href="#" class="hover:text-orange">Декларация ЕАЭС РА06.В.18410/25</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold text-white mb-2">Контакты</div>
+        <p>ООО «Светон» — официальный дистрибьютор Bineos в РФ.</p>
+        <p class="mt-1">m8@220-on.ru · +7 925 003-01-34</p>
+        <p class="mt-1">Сергей Русинов, ведущий специалист</p>
+        <p class="mt-3 text-xs">ОГРН 1125047017479 · г. Химки</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-white/10 text-xs text-white/40">
+      © 2026 Bineos. Все права защищены.
+    </div>
+  </footer>
+
+  <!-- Sticky CTA mobile -->
+  <div class="sticky-cta">
+    <a href="tel:+79250030134" class="flex-1 bg-navy text-white font-semibold py-2 rounded-lg text-center text-sm">Позвонить</a>
+    <a href="#form" class="flex-1 bg-orange text-white font-semibold py-2 rounded-lg text-center text-sm">Рассчитать</a>
+  </div>
+
+  <script>
+    // Quiz logic
+    const answers = {};
+    document.querySelectorAll('.q-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const block = btn.closest('.q-block');
+        const q = block.dataset.q;
+        answers[q] = btn.dataset.val;
+        block.querySelectorAll('.q-btn').forEach(b => {
+          b.classList.remove('bg-orange','text-white','border-orange');
+          b.classList.add('border-gray-300');
+        });
+        btn.classList.add('bg-orange','text-white','border-orange');
+        btn.classList.remove('border-gray-300');
+        checkQuiz();
+      });
+    });
+    function checkQuiz() {
+      if (Object.keys(answers).length < 3) return;
+      const res = document.getElementById('quiz-result');
+      res.classList.remove('hidden');
+      if (answers.home === 'yes' && answers.outages === 'yes' && answers.critical === 'yes') {
+        res.className = 'mt-6 p-4 rounded-xl bg-green/10 border border-green text-green';
+        res.innerHTML = '<strong>Система вам подходит.</strong> Оставьте контакты — подберём конфигурацию и цену.';
+      } else if (answers.outages === 'no') {
+        res.className = 'mt-6 p-4 rounded-xl bg-light border border-gray-200 text-graphite';
+        res.innerHTML = 'Отключений мало — возможно, хватит более простого решения. <a href="#form" class="text-orange font-semibold">Созвонимся и уточним.</a>';
+      } else {
+        res.className = 'mt-6 p-4 rounded-xl bg-light border border-gray-200 text-graphite';
+        res.innerHTML = 'Задача нестандартная — лучше обсудить по телефону. <a href="#form" class="text-orange font-semibold">Оставьте контакты.</a>';
+      }
+      document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-success').classList.remove('hidden');
+      return false;
+    }
+    function runCalc() {
+      const load = parseFloat(document.getElementById('calc-load').value) || 600;
+      const bat = parseFloat(document.getElementById('calc-bat').value) || 5.12;
+      const usable = bat * 0.8;
+      const hours = usable / (load / 1000);
+      const res = document.getElementById('calc-result');
+      res.classList.remove('hidden');
+      res.innerHTML = `При нагрузке ${load} Вт и АКБ ${bat} кВт·ч — примерно <strong>${hours.toFixed(1)} ч</strong> автономии (с учётом 80% глубины разряда LiFePO4).`;
+    }
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    function applyTheme(t) {
+      if (t === 'dark') { document.documentElement.classList.add('dark'); themeBtn.textContent = '☀️'; }
+      else { document.documentElement.classList.remove('dark'); themeBtn.textContent = '🌙'; }
+    }
+    const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(saved);
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section').forEach(s => { s.classList.add('reveal'); io.observe(s); });
+  </script>
+</body>
+</html>
